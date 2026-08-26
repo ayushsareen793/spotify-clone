@@ -20,7 +20,7 @@ function secondsToMinutesSeconds(seconds) {
 
 async function getsongs(folder) {
     currFolder = folder;
-     let a = await fetch(`http://127.0.0.1:3000/spotify%20clone%20project/${folder}/`)
+    let a = await fetch(`http://127.0.0.1:3000/spotify%20clone%20project/${folder}/`)
     let response = await a.text();
     console.log(response);
     let div = document.createElement("div")
@@ -71,19 +71,19 @@ const playmusic = (track, pause = false) => {
 
 
 
-    // Load the playlist whenever card is clicked
-    Array.from(document.getElementsByClassName("card")).forEach(e => { 
-        e.addEventListener("click", async item => {
-            console.log("Fetching Songs")
-            songs = await getsongs(`songs/${item.currentTarget.dataset.folder}`)  
-            playMusic(songs[0])
+// Load the playlist whenever card is clicked
+Array.from(document.getElementsByClassName("card")).forEach(e => {
+    e.addEventListener("click", async item => {
+        console.log("Fetching Songs")
+        songs = await getsongs(`songs/${item.currentTarget.dataset.folder}`)
+        playMusic(songs[0])
 
-        })
     })
+})
 
 
 
- 
+
 
 
 
@@ -93,7 +93,7 @@ async function main() {
     await getsongs("songs/ncs")
     playmusic(songs[0], true)
 
-    
+
 
 
 
@@ -187,19 +187,19 @@ async function main() {
         })
     })
 
-// add an event lsitner to mute thr track
-document.querySelector(".volume>img").addEventListener("click",e=>{
-console.log(e.target);
-if (e.target.src.includes("volume.svg")) {
-    e.target.src= e.target.src.replace("volume.svg","mute.svg")
-    currentsong.volume=0
-    document.querySelector(".range").getElementsByTagName("input")[0].value=0
-} else {
-    e.target.src=e.target.src.replace("mute.svg","volume.svg")
-    currentsong.volume=.10
-    document.querySelector(".range").getElementsByTagName("input")[0].value=60    
-}
-})
+    // add an event lsitner to mute thr track
+    document.querySelector(".volume>img").addEventListener("click", e => {
+        console.log(e.target);
+        if (e.target.src.includes("volume.svg")) {
+            e.target.src = e.target.src.replace("volume.svg", "mute.svg")
+            currentsong.volume = 0
+            document.querySelector(".range").getElementsByTagName("input")[0].value = 0
+        } else {
+            e.target.src = e.target.src.replace("mute.svg", "volume.svg")
+            currentsong.volume = .10
+            document.querySelector(".range").getElementsByTagName("input")[0].value = 60
+        }
+    })
 
 
 
